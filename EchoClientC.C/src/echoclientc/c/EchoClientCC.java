@@ -36,31 +36,60 @@ public class EchoClientCC {
             BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
             
             String userInput;
+            System.out.println("1) Login   ||  2) Crea account");
+            System.out.print("--> ");
+            int opzione = input.nextInt();
+            
+            switch (opzione){
+                case 1:
+                    userInput = "LOG: ";
+                    System.out.print("Inserisci nome utente: ");
+                    userInput += (input.next() + ": ");
+                    System.out.print("Inserisci password: ");
+                    userInput += (input.next());
+                    out.println(userInput);
+                    break;
+                case 2:
+                    userInput = "CA: ";
+                    System.out.print("Inserisci nome: ");
+                    userInput += (input.next() + ": ");
+                    System.out.print("Inserisci cognome: ");
+                    userInput += (input.next() + ": ");
+                    System.out.print("Inserisci un recapito telefonico: ");
+                    userInput += (input.next() + ": ");
+                    System.out.print("Inserisci codice fiscale: ");
+                    userInput += input.next();
+                    out.println(userInput);
+                    break;
+                default:
+            }
+            boolean uscita = false;
+            do{
             menu();
             System.out.print("Scegli una opzione: ");
-            int opzione = input.nextInt();
+            opzione = input.nextInt();
             
             switch(opzione){
                 case 1:
                     userInput = "PREL: ";
                     System.out.print("Inserisci il valore da prelevare in \"€\": ");
-                    userInput += input.nextInt();
+                    userInput += input.nextDouble();
                     out.println(userInput);
                     break;
                 case 2:
                     userInput = "VERS: ";
                     System.out.print("Inserisci il valore da versare in \"€\": ");
-                    userInput += input.nextInt();
+                    userInput += input.nextDouble();
                     out.println(userInput);
                     break;
                 case 3:
                     userInput = "GC: ";
                     System.out.print("Inserisci l'iban del debitore: ");
-                    userInput += (input.nextInt() + ": ");
+                    userInput += (input.next() + ": ");
                     System.out.print("Inserisci l'iban del creditore: ");
-                    userInput += (input.nextInt() + ": ");
+                    userInput += (input.next() + ": ");
                     System.out.print("Inserisci la quota in \"€\": ");
-                    userInput += input.nextInt();
+                    userInput += input.nextDouble();
                     out.println(userInput);
                     break;
                 case 4:
@@ -76,31 +105,32 @@ public class EchoClientCC {
                     out.println(userInput);
                     break;
                 case 7:
-                    userInput = "CA: ";
-                    System.out.print("Inserisci nome: ");
+                    System.out.print("Inserisci primo numero: ");
+                    userInput = (input.nextInt() + ": ");
+                    System.out.print("Inserisci codice corrispondente al primo numero: ");
                     userInput += (input.nextInt() + ": ");
-                    System.out.print("Inserisci cognome: ");
+                    System.out.print("Inserisci secondo numero: ");
                     userInput += (input.nextInt() + ": ");
-                    System.out.print("Inserisci un recapito telefonico: ");
+                    System.out.print("Inserisci codice corrispondente al secondo numero: ");
                     userInput += (input.nextInt() + ": ");
-                    System.out.print("Inserisci codice fiscale: ");
-                    userInput += input.nextInt();
                     out.println(userInput);
                     break;
                 case 8:
-                    break;
-                case 9:
-                    break;
-                case 10:
                     userInput = "BON: ";
                     System.out.print("Inserisci nome creditore: ");
-                    userInput += (input.nextInt() + ": ");
+                    userInput += (input.next() + ": ");
                     System.out.print("Inserisci quota creditore in \"€\": ");
-                    userInput += input.nextInt();
+                    userInput += input.nextDouble();
+                    out.println(userInput);
+                    break;
+                case 9:
+                    uscita = true;
                     break;
                 default:
+                    System.out.println("Attenzione scelta non corretta.");
                     
             }
+            } while (uscita == true);
                     
              //scrive sulla soket
             //System.out.println("echo: " + in.readLine());
@@ -122,10 +152,9 @@ public class EchoClientCC {
         System.out.println("4- Saldo");
         System.out.println("5- Lista Movimenti");
         System.out.println("6- Visualizza Anagrafica");
-        System.out.println("7- Crea Account");
-        System.out.println("8- Login");
-        System.out.println("9- Fornisce Codice Carta");
-        System.out.println("10- Bonifico");
+        System.out.println("7- Fornisce Codice Carta");
+        System.out.println("8- Bonifico");
+        System.out.println("9- esci");
         System.out.println("\n");
     }
     
