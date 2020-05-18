@@ -23,8 +23,8 @@ public class EchoClientCC {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner input = new Scanner (System.in);
-        
+        Scanner input = new Scanner(System.in);
+
         String hostName = "127.0.0.1";
         int portNumber = 3000;
 
@@ -34,13 +34,13 @@ public class EchoClientCC {
             BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
             //bufferedReader da tastiera
             BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-            
+            String response;            
             String userInput;
             System.out.println("1) Login   ||  2) Crea account");
             System.out.print("--> ");
             int opzione = input.nextInt();
             
-            switch (opzione){
+            switch (opzione) {
                 case 1:
                     userInput = "LOG: ";
                     System.out.print("Inserisci nome utente: ");
@@ -48,6 +48,9 @@ public class EchoClientCC {
                     System.out.print("Inserisci password: ");
                     userInput += (input.next());
                     out.println(userInput);
+                    out.flush();
+                    response = in.readLine();   //non risponde il server
+                    System.out.println("response: " + response);
                     break;
                 case 2:
                     userInput = "CA: ";
@@ -63,78 +66,78 @@ public class EchoClientCC {
                     break;
                 default:
             }
+
             boolean uscita = false;
-            do{
-            menu();
-            System.out.print("Scegli una opzione: ");
-            opzione = input.nextInt();
-            
-            switch(opzione){
-                case 1:
-                    userInput = "PREL: ";
-                    System.out.print("Inserisci il valore da prelevare in \"€\": ");
-                    userInput += input.nextDouble();
-                    out.println(userInput);
-                    break;
-                case 2:
-                    userInput = "VERS: ";
-                    System.out.print("Inserisci il valore da versare in \"€\": ");
-                    userInput += input.nextDouble();
-                    out.println(userInput);
-                    break;
-                case 3:
-                    userInput = "GC: ";
-                    System.out.print("Inserisci l'iban del debitore: ");
-                    userInput += (input.next() + ": ");
-                    System.out.print("Inserisci l'iban del creditore: ");
-                    userInput += (input.next() + ": ");
-                    System.out.print("Inserisci la quota in \"€\": ");
-                    userInput += input.nextDouble();
-                    out.println(userInput);
-                    break;
-                case 4:
-                    userInput = "SALDO";
-                    out.println(userInput);
-                    break;
-                case 5:
-                    userInput = "LMOV";
-                    out.println(userInput);
-                    break;
-                case 6:
-                    userInput = "ANG";
-                    out.println(userInput);
-                    break;
-                case 7:
-                    System.out.print("Inserisci primo numero: ");
-                    userInput = (input.nextInt() + ": ");
-                    System.out.print("Inserisci codice corrispondente al primo numero: ");
-                    userInput += (input.nextInt() + ": ");
-                    System.out.print("Inserisci secondo numero: ");
-                    userInput += (input.nextInt() + ": ");
-                    System.out.print("Inserisci codice corrispondente al secondo numero: ");
-                    userInput += (input.nextInt() + ": ");
-                    out.println(userInput);
-                    break;
-                case 8:
-                    userInput = "BON: ";
-                    System.out.print("Inserisci nome creditore: ");
-                    userInput += (input.next() + ": ");
-                    System.out.print("Inserisci quota creditore in \"€\": ");
-                    userInput += input.nextDouble();
-                    out.println(userInput);
-                    break;
-                case 9:
-                    uscita = true;
-                    break;
-                default:
-                    System.out.println("Attenzione scelta non corretta.");
-                    
-            }
-            } while (uscita == true);
-                    
-             //scrive sulla soket
+            do {
+                menu();
+                System.out.print("Scegli una opzione: ");
+                opzione = input.nextInt();
+
+                switch (opzione) {
+                    case 1:
+                        userInput = "PREL: ";
+                        System.out.print("Inserisci il valore da prelevare in \"€\": ");
+                        userInput += input.nextDouble();
+                        out.println(userInput);
+                        break;
+                    case 2:
+                        userInput = "VERS: ";
+                        System.out.print("Inserisci il valore da versare in \"€\": ");
+                        userInput += input.nextDouble();
+                        out.println(userInput);
+                        break;
+                    case 3:
+                        userInput = "GC: ";
+                        System.out.print("Inserisci l'iban del debitore: ");
+                        userInput += (input.next() + ": ");
+                        System.out.print("Inserisci l'iban del creditore: ");
+                        userInput += (input.next() + ": ");
+                        System.out.print("Inserisci la quota in \"€\": ");
+                        userInput += input.nextDouble();
+                        out.println(userInput);
+                        break;
+                    case 4:
+                        userInput = "SALDO";
+                        out.println(userInput);
+                        break;
+                    case 5:
+                        userInput = "LMOV";
+                        out.println(userInput);
+                        break;
+                    case 6:
+                        userInput = "ANG";
+                        out.println(userInput);
+                        break;
+                    case 7:
+                        System.out.print("Inserisci primo numero: ");
+                        userInput = (input.nextInt() + ": ");
+                        System.out.print("Inserisci codice corrispondente al primo numero: ");
+                        userInput += (input.nextInt() + ": ");
+                        System.out.print("Inserisci secondo numero: ");
+                        userInput += (input.nextInt() + ": ");
+                        System.out.print("Inserisci codice corrispondente al secondo numero: ");
+                        userInput += (input.nextInt() + ": ");
+                        out.println(userInput);
+                        break;
+                    case 8:
+                        userInput = "BON: ";
+                        System.out.print("Inserisci nome creditore: ");
+                        userInput += (input.next() + ": ");
+                        System.out.print("Inserisci quota creditore in \"€\": ");
+                        userInput += input.nextDouble();
+                        out.println(userInput);
+                        break;
+                    case 9:
+                        uscita = true;
+                        break;
+                    default:
+                        System.out.println("Attenzione scelta non corretta.");
+
+                }
+            } while (uscita == false);
+
+            //scrive sulla soket
             //System.out.println("echo: " + in.readLine());
-            
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);
             System.exit(1);
@@ -144,7 +147,8 @@ public class EchoClientCC {
             System.exit(1);
         }
     }
-    public static void menu (){
+
+    public static void menu() {
         System.out.println("----- MENU -----");
         System.out.println("1- Prelievo");
         System.out.println("2- Versamento");
@@ -157,5 +161,5 @@ public class EchoClientCC {
         System.out.println("9- esci");
         System.out.println("\n");
     }
-    
+
 }
